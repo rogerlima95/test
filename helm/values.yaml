@@ -1,0 +1,13 @@
+replicaCount: 1
+
+image:
+  repository: rogerlima/node-docker-hello-world
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 80
+
+
+resources: {}

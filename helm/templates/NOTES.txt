@@ -1,0 +1,32 @@
+##############################################################################
+### Instruções
+
+A aplicação foi implantada com sucesso no cluster Kubernetes. 
+
+### Acesso à Aplicação
+
+Como o serviço foi configurado como `ClusterIP`, ele não está acessível externamente por padrão. 
+
+#### Opção 1: Usando Minikube
+
+Se estiver usando Minikube, você pode expor o serviço facilmente com o seguinte comando:
+
+    minikube service {{ include "node-hello-world.fullname" . }}
+
+#### Opção 2: Usando Port Forward
+
+Você também pode usar o comando `kubectl port-forward` para acessar o serviço diretamente:
+
+    kubectl port-forward svc/{{ include "node-hello-world.fullname" . }} 8080:{{ .Values.service.port }}
+
+Depois de executar o comando acima, você pode acessar a aplicação no navegador através do endereço:
+
+    http://localhost:8080
+
+### Desinstalação
+
+Para desinstalar o _chart_ e remover a aplicação:
+
+    helm uninstall {{ include "node-hello-world.fullname" . }}
+
+##############################################################################
